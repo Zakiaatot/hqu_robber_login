@@ -1,4 +1,4 @@
-FROM rust:latest 
+FROM rust:1.73-bullseye
 RUN apt-get update && apt-get install -y libclang-dev libopencv-dev clang libssl-dev
 WORKDIR /server
 COPY ./src ./src
