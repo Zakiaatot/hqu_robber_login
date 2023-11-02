@@ -1,9 +1,6 @@
-FROM rust:1.73-bullseye
-RUN apt-get update && apt-get install -y libclang-dev libopencv-dev clang libssl-dev
+FROM debian:buster-slim
+RUN apt-get update && apt-get upgrade
 WORKDIR /server
-COPY ./src ./src
-COPY ./Cargo.toml  .
-RUN cargo build --release
-RUN mv /server/target/release/hqu_robber_login /hqu_robber_login
-ENV RUST_LOG=info
+COPY ./bin/hqu_robber_login .
+RUN mv /server/hqu_robber_login /hqu_robber_login
 CMD ["/hqu_robber_login"]
